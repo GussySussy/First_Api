@@ -1,0 +1,319 @@
+[
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "MethodView",
+        "importPath": "flask.views",
+        "description": "flask.views",
+        "isExtraImport": true,
+        "detail": "flask.views",
+        "documentation": {}
+    },
+    {
+        "label": "MethodView",
+        "importPath": "flask.views",
+        "description": "flask.views",
+        "isExtraImport": true,
+        "detail": "flask.views",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask_smorest",
+        "description": "flask_smorest",
+        "isExtraImport": true,
+        "detail": "flask_smorest",
+        "documentation": {}
+    },
+    {
+        "label": "abort",
+        "importPath": "flask_smorest",
+        "description": "flask_smorest",
+        "isExtraImport": true,
+        "detail": "flask_smorest",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask_smorest",
+        "description": "flask_smorest",
+        "isExtraImport": true,
+        "detail": "flask_smorest",
+        "documentation": {}
+    },
+    {
+        "label": "abort",
+        "importPath": "flask_smorest",
+        "description": "flask_smorest",
+        "isExtraImport": true,
+        "detail": "flask_smorest",
+        "documentation": {}
+    },
+    {
+        "label": "Api",
+        "importPath": "flask_smorest",
+        "description": "flask_smorest",
+        "isExtraImport": true,
+        "detail": "flask_smorest",
+        "documentation": {}
+    },
+    {
+        "label": "items",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "stores",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "blp",
+        "importPath": "resources.item",
+        "description": "resources.item",
+        "isExtraImport": true,
+        "detail": "resources.item",
+        "documentation": {}
+    },
+    {
+        "label": "blp",
+        "importPath": "resources.store",
+        "description": "resources.store",
+        "isExtraImport": true,
+        "detail": "resources.store",
+        "documentation": {}
+    },
+    {
+        "label": "Schema",
+        "importPath": "marshmallow",
+        "description": "marshmallow",
+        "isExtraImport": true,
+        "detail": "marshmallow",
+        "documentation": {}
+    },
+    {
+        "label": "fields",
+        "importPath": "marshmallow",
+        "description": "marshmallow",
+        "isExtraImport": true,
+        "detail": "marshmallow",
+        "documentation": {}
+    },
+    {
+        "label": "Item",
+        "kind": 6,
+        "importPath": "resources.item",
+        "description": "resources.item",
+        "peekOfCode": "class Item(MethodView):\n    def get(self, item_id):\n        try:\n            return items[item_id]\n        except KeyError:\n            abort(404, message = \"Item could not be found\")\n    def delete(self, item_id):\n        try:\n            del items[item_id]  \n            return {\"message\" : \"Item deleted\"}",
+        "detail": "resources.item",
+        "documentation": {}
+    },
+    {
+        "label": "ItemList",
+        "kind": 6,
+        "importPath": "resources.item",
+        "description": "resources.item",
+        "peekOfCode": "class ItemList(MethodView):\n    def get(self):\n        return {\"items\" : list(items.values())}\n    def post(self):\n        item_data = request.get_json()\n        if(\"price\" not in item_data or \"store_id\" not in item_data or \"name\" not in item_data):\n            abort(400,message = \"Bad request. Ensure 'price', 'store_id' and 'name' are included in the JSON payload\")\n        for item in items.values():\n            if ( item_data[\"name\"] == item[\"name\"] and item_data[\"store_id\"] == item[\"store_id\"]):\n                abort(400, message=\"Item already exists\")",
+        "detail": "resources.item",
+        "documentation": {}
+    },
+    {
+        "label": "blp",
+        "kind": 5,
+        "importPath": "resources.item",
+        "description": "resources.item",
+        "peekOfCode": "blp = Blueprint(\"Items\", __name__, description = \"Operations on items\")\n@blp.route(\"/item/<string:item_id>\")\nclass Item(MethodView):\n    def get(self, item_id):\n        try:\n            return items[item_id]\n        except KeyError:\n            abort(404, message = \"Item could not be found\")\n    def delete(self, item_id):\n        try:",
+        "detail": "resources.item",
+        "documentation": {}
+    },
+    {
+        "label": "Store",
+        "kind": 6,
+        "importPath": "resources.store",
+        "description": "resources.store",
+        "peekOfCode": "class Store(MethodView):\n    def get(self, store_id):\n        try:\n            return stores[store_id]\n        except KeyError:\n            abort(404,message=\"Store not found\")\n    def delete(self, store_id):\n        try:\n            del stores[store_id]\n            return {\"message\": \"Store deleted.\"}",
+        "detail": "resources.store",
+        "documentation": {}
+    },
+    {
+        "label": "StoreList",
+        "kind": 6,
+        "importPath": "resources.store",
+        "description": "resources.store",
+        "peekOfCode": "class StoreList(MethodView):\n    def get(self):\n        return {\"stores\" : list(stores.values())}\n    def post(self):\n        store_data = request.get_json()\n        if(\"name\" not in store_data):\n            abort(400,message = \"Bad request. Ensure 'name' is included in the JSON payload.\")\n        for store in stores.values():\n            if store_data[\"name\"] == store[\"name\"]:\n                abort(400, message= \"Store already exists.\")",
+        "detail": "resources.store",
+        "documentation": {}
+    },
+    {
+        "label": "blp",
+        "kind": 5,
+        "importPath": "resources.store",
+        "description": "resources.store",
+        "peekOfCode": "blp = Blueprint(\"stores\", __name__, description = \"Operations on stores\")\n@blp.route(\"/store/<string:store_id>\")\nclass Store(MethodView):\n    def get(self, store_id):\n        try:\n            return stores[store_id]\n        except KeyError:\n            abort(404,message=\"Store not found\")\n    def delete(self, store_id):\n        try:",
+        "detail": "resources.store",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\napp.config[\"PROPAGATE_EXCEPTIONS\"] = True\napp.config[\"API_TITLE\"] = \"Anna Api\"\napp.config[\"API_VERSION\"] = \"v1\"\napp.config[\"OPENAPI_VERSION\"] = \"3.0.3\"\napp.config[\"OPENAPI_URL_PREFIX\"] = \"/\"\napp.config[\"OPENAPI_SWAGGER_UI_PATH\"] = \"/swagger-ui\"\napp.config[\"OPENAPI_SWAGGER_UI_URL\"] = \"https://cdn.jsdelivr.net/npm/swagger-ui-dist/\"\napi = Api(app)\napi.register_blueprint(ItemBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"PROPAGATE_EXCEPTIONS\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"PROPAGATE_EXCEPTIONS\"] = True\napp.config[\"API_TITLE\"] = \"Anna Api\"\napp.config[\"API_VERSION\"] = \"v1\"\napp.config[\"OPENAPI_VERSION\"] = \"3.0.3\"\napp.config[\"OPENAPI_URL_PREFIX\"] = \"/\"\napp.config[\"OPENAPI_SWAGGER_UI_PATH\"] = \"/swagger-ui\"\napp.config[\"OPENAPI_SWAGGER_UI_URL\"] = \"https://cdn.jsdelivr.net/npm/swagger-ui-dist/\"\napi = Api(app)\napi.register_blueprint(ItemBlueprint)\napi.register_blueprint(StoreBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"API_TITLE\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"API_TITLE\"] = \"Anna Api\"\napp.config[\"API_VERSION\"] = \"v1\"\napp.config[\"OPENAPI_VERSION\"] = \"3.0.3\"\napp.config[\"OPENAPI_URL_PREFIX\"] = \"/\"\napp.config[\"OPENAPI_SWAGGER_UI_PATH\"] = \"/swagger-ui\"\napp.config[\"OPENAPI_SWAGGER_UI_URL\"] = \"https://cdn.jsdelivr.net/npm/swagger-ui-dist/\"\napi = Api(app)\napi.register_blueprint(ItemBlueprint)\napi.register_blueprint(StoreBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"API_VERSION\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"API_VERSION\"] = \"v1\"\napp.config[\"OPENAPI_VERSION\"] = \"3.0.3\"\napp.config[\"OPENAPI_URL_PREFIX\"] = \"/\"\napp.config[\"OPENAPI_SWAGGER_UI_PATH\"] = \"/swagger-ui\"\napp.config[\"OPENAPI_SWAGGER_UI_URL\"] = \"https://cdn.jsdelivr.net/npm/swagger-ui-dist/\"\napi = Api(app)\napi.register_blueprint(ItemBlueprint)\napi.register_blueprint(StoreBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"OPENAPI_VERSION\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"OPENAPI_VERSION\"] = \"3.0.3\"\napp.config[\"OPENAPI_URL_PREFIX\"] = \"/\"\napp.config[\"OPENAPI_SWAGGER_UI_PATH\"] = \"/swagger-ui\"\napp.config[\"OPENAPI_SWAGGER_UI_URL\"] = \"https://cdn.jsdelivr.net/npm/swagger-ui-dist/\"\napi = Api(app)\napi.register_blueprint(ItemBlueprint)\napi.register_blueprint(StoreBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"OPENAPI_URL_PREFIX\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"OPENAPI_URL_PREFIX\"] = \"/\"\napp.config[\"OPENAPI_SWAGGER_UI_PATH\"] = \"/swagger-ui\"\napp.config[\"OPENAPI_SWAGGER_UI_URL\"] = \"https://cdn.jsdelivr.net/npm/swagger-ui-dist/\"\napi = Api(app)\napi.register_blueprint(ItemBlueprint)\napi.register_blueprint(StoreBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"OPENAPI_SWAGGER_UI_PATH\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"OPENAPI_SWAGGER_UI_PATH\"] = \"/swagger-ui\"\napp.config[\"OPENAPI_SWAGGER_UI_URL\"] = \"https://cdn.jsdelivr.net/npm/swagger-ui-dist/\"\napi = Api(app)\napi.register_blueprint(ItemBlueprint)\napi.register_blueprint(StoreBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"OPENAPI_SWAGGER_UI_URL\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"OPENAPI_SWAGGER_UI_URL\"] = \"https://cdn.jsdelivr.net/npm/swagger-ui-dist/\"\napi = Api(app)\napi.register_blueprint(ItemBlueprint)\napi.register_blueprint(StoreBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "api",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "api = Api(app)\napi.register_blueprint(ItemBlueprint)\napi.register_blueprint(StoreBlueprint)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "stores",
+        "kind": 5,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "stores = {}\nitems = {}",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "items",
+        "kind": 5,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "items = {}",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "ItemSchema",
+        "kind": 6,
+        "importPath": "schemas",
+        "description": "schemas",
+        "peekOfCode": "class ItemSchema(Schema):\n    id = fields.Str(dump_only=True)\n    name = fields.Str(required=True)\n    price = fields.Float(required=True)\n    store_id = fields.Str(required=True)\nclass ItemUpdateSchema(Schema):\n    name = fields.Str()\n    price = fields.Float()\nclass StoreSchema(Schema):\n    id = fields.Str(dump_only=True)",
+        "detail": "schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ItemUpdateSchema",
+        "kind": 6,
+        "importPath": "schemas",
+        "description": "schemas",
+        "peekOfCode": "class ItemUpdateSchema(Schema):\n    name = fields.Str()\n    price = fields.Float()\nclass StoreSchema(Schema):\n    id = fields.Str(dump_only=True)\n    name = fields.Str(required=True)",
+        "detail": "schemas",
+        "documentation": {}
+    },
+    {
+        "label": "StoreSchema",
+        "kind": 6,
+        "importPath": "schemas",
+        "description": "schemas",
+        "peekOfCode": "class StoreSchema(Schema):\n    id = fields.Str(dump_only=True)\n    name = fields.Str(required=True)",
+        "detail": "schemas",
+        "documentation": {}
+    }
+]
