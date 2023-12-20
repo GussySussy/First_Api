@@ -1,4 +1,5 @@
 flask
 flask_smorest
 flask_sqlalchemy
+Flask-SQLAlchemy
 python-dotenv
